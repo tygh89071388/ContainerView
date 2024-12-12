@@ -1,0 +1,65 @@
+# Language of the plugin.
+# Available languages: English(en), Chinese-Traditional(zh-tw)
+language: "en"
+
+# Based on the player's location and specified half-width (int range),
+# this function returns a list of blocks within the cuboid-shaped area centered on the player.
+# The cuboid extends from the player's position in all directions (x, y, z) by the specified range.
+view_range: 10
+
+# How much second(s) will containers glow and maintain viewable in a single view session.
+view_session_duration: 30
+
+# Should the view gui automatically close when time is up.
+gui_auto_close: true
+
+# Viewable container.
+# Available containers: CHEST, DISPENSER, DROPPER, BARREL, SHULKER_BOX, TRAPPED_CHEST.
+containers:
+  - CHEST
+  - DISPENSER
+  - DROPPER
+  - BARREL
+  - SHULKER_BOX
+  - TRAPPED_CHEST
+
+  # !!!!!!!!!!!!!!!!!!!!!!! #
+  # Because there are only 16 colors for the glow effect,
+  # the amount of color(s) below will determine how many containers you can view at a time. (Max 16)
+  # !!!!!!!!!!!!!!!!!!!!!!! #
+colors:
+  - YELLOW
+  - BLUE
+  - GREEN
+  - AQUA
+  - RED
+  - LIGHT_PURPLE
+  - WHITE
+  - GOLD
+  - BLACK
+  - DARK_BLUE
+  - DARK_GREEN
+  - DARK_AQUA
+  - DARK_RED
+  - DARK_PURPLE
+  - GRAY
+  - DARK_GRAY
+
+# Play sound when view GUI opens.
+# You can find all the sounds here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+sound:
+  # Play or not, default enabled.
+  enable: true
+  open_sound: BLOCK_BARREL_OPEN
+  close_sound: BLOCK_BARREL_CLOSE
+
+# Custom permission for the plugin.
+permissions:
+  use: containerview.use
+  reload: containerview.reload
+
+# Print debug messages in console.
+debug: false
+
+
+

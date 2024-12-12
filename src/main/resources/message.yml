@@ -1,0 +1,52 @@
+# Plugin prefix
+prefix: "&e[CView] "
+
+# Title on container view GUI.
+# Placeholders available for 'gui_title': {x}, {y}, {z}, {icon}.
+# Returns container's location x, y, z.
+gui_title: "{icon} &0Container View &l| &0{x}, {y}, {z}"
+
+# Clickable Message to view containers.
+chat:
+  # Icon for single and double containers.
+  icon_single: "⏺"
+  icon_double: "⏺⏺"
+  # Placeholders available for 'chat.body': {x}, {y}, {z}.
+  # Returns container's location x, y, z.
+  body: "&8 | &7Container view &navailable&7 at &f{x}, {y}, {z}"
+  clickable: " &e[Click here]"
+  hover: "Click to view"
+
+# Clickable Message to end view session.
+end:
+  body: "&7Click the &lx &7button to end the view session early."
+  clickable: " &c[x]"
+  hover: "Click to end"
+
+# Placeholder available for 'enable': {time}
+# Returns 'config.view_session_duration'.
+enabled: "&7A new container view session &aenabled &7for &e{time} second(s)&7."
+disabled: "&7Container view session &cended&7."
+not_enabled: "&cThere's is no active view session, use &e/cview view&c to view."
+not_viewable: "&7This Container is no longer viewable, use &e/cview view&7 to view again."
+# Message when there's no container nearby the player.
+not_found: "&cNo containers were found near you."
+no_permission: "&cInsufficient permission."
+unknown_usage: "&cUnknown usage, type &e/cview help &cfor help."
+reloaded: "&7Plugin reloaded."
+
+# Help menu
+# The plugin will show the messages depends on your permission.
+# e.g If you don't have the reload permission, the plugin won't show it.
+help:
+  - "&8&l&m━━━━━━━━━━━━━&2&l Help &8&l&m━━━━━━━━━━━━━"
+  - ""
+  - " &7This plugin will high-light the containers"
+  - " &7so you can view it's contents without physical access."
+  - ""
+  - " &b• &e/cview view &8- &7Start a new view session"
+  - " &b• &e/cview end &8- &7Terminate the current view session"
+  - " &b• &e/cview help &8- &7Display this menu"
+  - " &b• &e/cview reload &8- &7Display this menu"
+  - ""
+  - "&8&l&m━━━━━━━━&e&l ContainerView &8&l&m━━━━━━━━"
