@@ -13,10 +13,7 @@ import java.util.List;
 
 public class CommandExecutor implements org.bukkit.command.CommandExecutor, TabCompleter {
 
-	//TODO
-	// -Help page
-
-	private Main mainClass = Main.getMain();
+	private final Main mainClass = Main.getMain();
 
 	@Override
 	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {

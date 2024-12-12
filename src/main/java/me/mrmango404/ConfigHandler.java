@@ -78,7 +78,7 @@ public class ConfigHandler {
 		YamlConfiguration defaultConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(mainClass.getResource(configPath)));
 
 		config.addDefaults(defaultConfig);
-		config.addDefaults(defaultMsg);
+		msg.addDefaults(defaultMsg);
 
 		VIEW_RANGE = config.getInt("view_range");
 		VIEW_SESSION_DURATION = config.getLong("view_session_duration");

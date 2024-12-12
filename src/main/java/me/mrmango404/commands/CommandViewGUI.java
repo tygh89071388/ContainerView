@@ -17,9 +17,6 @@ import java.util.*;
 
 public class CommandViewGUI {
 
-	// TODO
-	//  Double chest icon
-
 	public void run(Player player, CommandView.CONTAINER_TYPE type, int container) {
 
 		if (!player.hasPermission(ConfigHandler.Permission.USE)) {
@@ -34,7 +31,6 @@ public class CommandViewGUI {
 
 		LivingEntity shulker;
 		Block targetBlock;
-		String containerTitle;
 		ChatColor teamColor;
 		World world = player.getWorld();
 		UUID playerUUID = player.getUniqueId();
@@ -135,9 +131,8 @@ public class CommandViewGUI {
 			return;
 		}
 
-		if (targetBlock.getState() instanceof ShulkerBox) {
+		if (targetBlock.getState() instanceof ShulkerBox shulkerBox) {
 			Inventory inv = Bukkit.createInventory(player, InventoryType.SHULKER_BOX, containerTitle);
-			ShulkerBox shulkerBox = (ShulkerBox) targetBlock.getState();
 			inv.setContents(shulkerBox.getInventory().getContents());
 			player.openInventory(inv);
 			SoundPlayer.playSound(player, SoundPlayer.ACTION.OPEN);

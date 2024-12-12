@@ -7,7 +7,10 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.chat.hover.content.Text;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.DoubleChest;
@@ -22,7 +25,7 @@ import java.util.*;
 
 public class CommandView implements ICommand {
 
-	private Main mainClass = Main.getMain();
+	private final Main mainClass = Main.getMain();
 
 	public enum CONTAINER_TYPE {
 		SINGLE,
@@ -38,7 +41,6 @@ public class CommandView implements ICommand {
 		}
 
 		String teamName;
-		World world = player.getWorld();
 		UUID playerUUID = player.getUniqueId();
 		ArrayList<Team> teamsList = new ArrayList<>();
 		Location playerLocation = player.getLocation();

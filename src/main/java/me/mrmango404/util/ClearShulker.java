@@ -12,8 +12,6 @@ import java.util.UUID;
 
 public class ClearShulker {
 
-	private Main mainClass = Main.getMain();
-
 	public ClearShulker(Player player) {
 		clear(player);
 	}

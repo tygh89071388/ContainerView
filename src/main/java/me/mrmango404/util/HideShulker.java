@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class HideShulker {
 
-	private Main mainClass = Main.getMain();
+	private final Main mainClass = Main.getMain();
 
 	/**
 	 * Hide the shulker from online players.
