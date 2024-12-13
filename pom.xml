@@ -14,6 +14,11 @@
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
+
+        <repository>
+            <id>spaceio-repo</id>
+            <url>https://repo.spaceio.xyz/repository/maven-public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -23,6 +28,12 @@
             <artifactId>spigot-api</artifactId>
             <version>1.21-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>xyz.spaceio</groupId>
+            <artifactId>SafariNet</artifactId>
+            <version>1.15.37-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

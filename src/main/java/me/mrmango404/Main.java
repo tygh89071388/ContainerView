@@ -1,7 +1,9 @@
 package me.mrmango404;
 
+import de.Linus122.SafariNet.API.SafariNet;
 import me.mrmango404.commands.CommandExecutor;
 import me.mrmango404.events.*;
+import me.mrmango404.hooks.Safarinet;
 import me.mrmango404.util.ClearShulker;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -42,6 +44,11 @@ public class Main extends JavaPlugin {
 		ConfigHandler.load();
 		instance.saveDefaultConfig();
 		scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+
+		if (Bukkit.getPluginManager().getPlugin("SafariNet") != null) {
+			Safarinet safarinet = new Safarinet();
+			SafariNet.addListener(safarinet);
+		}
 	}
 
 	@Override

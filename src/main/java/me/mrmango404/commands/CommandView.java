@@ -18,6 +18,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Shulker;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.Team;
 
@@ -39,6 +40,9 @@ public class CommandView implements ICommand {
 			MsgPlayer.send(player, MsgPlayer.MESSAGE_FIELD.NO_PERMISSION);
 			return;
 		}
+
+		final int HOOK_RESIDENCE_HEIGHT = 400;
+		Plugin resPlug = Main.getMain().getServer().getPluginManager().getPlugin("Residence");
 
 		String teamName;
 		UUID playerUUID = player.getUniqueId();
@@ -98,8 +102,18 @@ public class CommandView implements ICommand {
 		// Spawning for single containers
 		int i = 0;
 		for (Location location : singleContainerList) {
+			if (resPlug != null) {
+				location = location.add(0, HOOK_RESIDENCE_HEIGHT, 0);
+			}
+
 			if (i < getColors().size()) {
 				LivingEntity shulkerSingle = player.getWorld().spawn(location, Shulker.class, shulker -> shulker.setInvisible(true));
+
+				if (resPlug != null) {
+					location = location.subtract(0, HOOK_RESIDENCE_HEIGHT, 0);
+					shulkerSingle.teleport(location);
+				}
+
 				shulkerSingle = setEntityAttribute(shulkerSingle);
 				shulkerSingle.addScoreboardTag(getColorsInString().get(i));
 
@@ -120,9 +134,25 @@ public class CommandView implements ICommand {
 		// Spawning for Double Chest
 		int j = 0;
 		for (Map.Entry<Location, Location> set : doubleContainerList.entrySet()) {
+			Location locationLeft = set.getKey();
+			Location locationRight = set.getValue();
+
+			if (resPlug != null) {
+				locationLeft = locationLeft.add(0, HOOK_RESIDENCE_HEIGHT, 0);
+				locationRight = locationRight.add(0, HOOK_RESIDENCE_HEIGHT, 0);
+			}
+
 			if (j < getColors().size()) {
-				LivingEntity shulkerLeft = player.getWorld().spawn(set.getKey(), Shulker.class, shulker -> shulker.setInvisible(true));
-				LivingEntity shulkerRight = player.getWorld().spawn(set.getValue(), Shulker.class, shulker -> shulker.setInvisible(true));
+				LivingEntity shulkerLeft = player.getWorld().spawn(locationLeft, Shulker.class, shulker -> shulker.setInvisible(true));
+				LivingEntity shulkerRight = player.getWorld().spawn(locationRight, Shulker.class, shulker -> shulker.setInvisible(true));
+
+				if (resPlug != null) {
+					locationLeft = locationLeft.subtract(0, HOOK_RESIDENCE_HEIGHT, 0);
+					locationRight = locationRight.subtract(0, HOOK_RESIDENCE_HEIGHT, 0);
+					shulkerLeft.teleport(locationLeft);
+					shulkerRight.teleport(locationRight);
+				}
+
 				shulkerLeft.addScoreboardTag(getColorsInString().get(j));
 				shulkerRight.addScoreboardTag(getColorsInString().get(j));
 
