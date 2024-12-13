@@ -1,7 +1,3 @@
-# Language of the plugin.
-# Available languages: English(en), Chinese-Traditional(zh-tw)
-language: "en"
-
 # Based on the player's location and specified half-width (int range),
 # this function returns a list of blocks within the cuboid-shaped area centered on the player.
 # The cuboid extends from the player's position in all directions (x, y, z) by the specified range.
