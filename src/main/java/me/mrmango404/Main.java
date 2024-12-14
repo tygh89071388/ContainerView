@@ -1,13 +1,15 @@
 package me.mrmango404;
 
+import de.Linus122.SafariNet.API.Listener;
 import de.Linus122.SafariNet.API.SafariNet;
 import me.mrmango404.commands.CommandExecutor;
 import me.mrmango404.events.*;
-import me.mrmango404.hooks.Safarinet;
 import me.mrmango404.util.ClearShulker;
+import me.mrmango404.util.DebugManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.Scoreboard;
@@ -44,10 +46,19 @@ public class Main extends JavaPlugin {
 		ConfigHandler.load();
 		instance.saveDefaultConfig();
 		scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+		Plugin safariPlug = Bukkit.getPluginManager().getPlugin("SafariNet");
 
-		if (Bukkit.getPluginManager().getPlugin("SafariNet") != null) {
-			Safarinet safarinet = new Safarinet();
-			SafariNet.addListener(safarinet);
+		if (safariPlug != null) {
+			try {
+				Class<?> listenerClass = Class.forName("me.mrmango404.hooks.Safarinet");
+				Listener listener = (de.Linus122.SafariNet.API.Listener) listenerClass.getDeclaredConstructor().newInstance();
+				SafariNet.addListener(listener);
+				DebugManager.log("SafariNet hook loaded.");
+			} catch (Exception e) {
+				DebugManager.log("SafariNet hook could not be loaded.");
+			}
+		} else {
+			DebugManager.log("SafariNet hook could not be found.");
 		}
 	}
 
