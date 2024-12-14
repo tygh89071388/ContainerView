@@ -18,9 +18,6 @@ import java.util.UUID;
 
 public class BlockBreakDeletion implements Listener {
 
-	// TODO
-	//  location off set to accommodate entity scale
-
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent event) {
 
