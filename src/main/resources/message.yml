@@ -47,6 +47,6 @@ help:
   - " &b• &e/cview view &8- &7Start a new view session"
   - " &b• &e/cview end &8- &7Terminate the current view session"
   - " &b• &e/cview help &8- &7Display this menu"
-  - " &b• &e/cview reload &8- &7Display this menu"
+  - " &b• &e/cview reload &8- &7Reload plugin"
   - ""
   - "&8&l&m━━━━━━━━&e&l ContainerView &8&l&m━━━━━━━━"
