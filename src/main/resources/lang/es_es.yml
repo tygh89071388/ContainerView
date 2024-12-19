@@ -1,9 +1,9 @@
 ##           -- Language File --           ##
-##         Avoid modifying this file.      ##
-##  Instead, duplicate it to "custom.yml"  ##
+##                Spanish                  ##
+##           Translated by: abb3v          ##
 
 # Plugin prefix
-prefix: "&e[CView] "
+prefix: "&#FFD400[CView] "
 
 # Title on container view GUI.
 # Placeholders available for 'gui_title': {x}, {y}, {z}, {icon}.

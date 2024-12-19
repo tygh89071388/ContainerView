@@ -1,5 +1,9 @@
 # Language to be used, if you do not know what you are doing, leave this as en_us.
-# If you wish to modify an existing language, duplicate it to "custom.yml" and set this value to "custom"
+#
+#    To display English: en_us
+#    Para mostrar español: es_es
+#    顯示繁體中文(香港): zh_hk
+#    显示简体中文(中国大陆): zh_cn
 language: en_us
 
 # Based on the player's location and specified half-width (int range),
