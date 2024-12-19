@@ -1,0 +1,54 @@
+##            -- Language File --          ##
+##              简体中文(中国大陆)            ##
+##               译者: oMango               ##
+
+# 插件前缀
+prefix: "&#FFD400[容器查看] "
+
+# 容器视图界面标题
+# 可用变量 'gui_title'：{x}，{y}，{z}，{icon}
+# 显示容器的坐标 x, y, z
+gui_title: "{icon} &0容器预览 &l| &0{x}, {y}, {z}"
+
+# 容器预览信息
+chat:
+  # 单类容器和双箱的图标
+  icon_single: "⏺"
+  icon_double: "⏺⏺"
+  # 可用变量 'chat.body'：{x}，{y}，{z} ( 显示容器的坐标 x, y, z )
+  body: "&8 | &7容器 &f{x}, {y}, {z} &7现可预览"
+  clickable: " &#FFF4BF[点击]"
+  hover: "点击查看"
+
+# 终止预览互动信息
+end:
+  body: "&7点击 &lx &7以终止预览。"
+  clickable: " &c[x]"
+  hover: "点击终止"
+
+# 可用变量 'enable'：{time}
+# 显示 'config.view_session_duration'。
+enabled: " &a已开始 &7容器预览 &#FFF4BF{time} 秒&7。"
+disabled: "&7容器预览 &c已结束&7。"
+not_enabled: "&7请使用 &#FFF4BF/cview view&7 再次预览。"
+not_viewable: "&7请使用 &#FFF4BF/cview view&7 再次预览。"
+# 当玩家附近没有容器时的消息。
+not_found: "7在附近未找到任何可预览的容器。"
+no_permission: "&7权限不足。"
+unknown_usage: "&7命令格式错误，请输入 &#FFF4BF/cview help &7查看用法。"
+reloaded: "&7插件已重新加载。"
+
+# 指令用法界面
+# 插件将根据你的权限显示相应的消息。
+# 例如：如果你没有重新加载权限，插件将不会显示那一行。
+help:
+  - "&8&l&m━━━━━━━━━━━━━&2&l 用法 &8&l&m━━━━━━━━━━━━━"
+  - ""
+  - " &7远程查看容器内的内容。"
+  - ""
+  - " &b• &#FFF4BF/cview view &8- &7预览容器"
+  - " &b• &#FFF4BF/cview end &8- &7结束预览"
+  - " &b• &#FFF4BF/cview help &8- &7显示帮助界面"
+  - " &b• &#FFF4BF/cview reload &8- &7重新加载插件"
+  - ""
+  - "&8&l&m━━━━━━━━&#FFD400&l ContainerView &8&l&m━━━━━━━━"

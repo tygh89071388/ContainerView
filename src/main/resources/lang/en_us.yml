@@ -1,5 +1,9 @@
+##           -- Language File --           ##
+##                English                  ##
+
+
 # Plugin prefix
-prefix: "&e[CView] "
+prefix: "&#FFD400[CView] "
 
 # Title on container view GUI.
 # Placeholders available for 'gui_title': {x}, {y}, {z}, {icon}.
@@ -14,7 +18,7 @@ chat:
   # Placeholders available for 'chat.body': {x}, {y}, {z}.
   # Returns container's location x, y, z.
   body: "&8 | &7Container view &navailable&7 at &f{x}, {y}, {z}"
-  clickable: " &e[Click here]"
+  clickable: " &#FFF4BF[Click here]"
   hover: "Click to view"
 
 # Clickable Message to end view session.
@@ -25,14 +29,14 @@ end:
 
 # Placeholder available for 'enable': {time}
 # Returns 'config.view_session_duration'.
-enabled: "&7A new container view session &aenabled &7for &e{time} second(s)&7."
+enabled: "&7A new container view session &aenabled &7for &#FFF4BF{time} second(s)&7."
 disabled: "&7Container view session &cended&7."
-not_enabled: "&cThere's is no active view session, use &e/cview view&c to view."
-not_viewable: "&7This Container is no longer viewable, use &e/cview view&7 to view again."
+not_enabled: "&7There's is no active view session, use &#FFF4BF/cview view&c to view."
+not_viewable: "&7This Container is no longer viewable, use &#FFF4BF/cview view&7 to view again."
 # Message when there's no container nearby the player.
-not_found: "&cNo containers were found near you."
-no_permission: "&cInsufficient permission."
-unknown_usage: "&cUnknown usage, type &e/cview help &cfor help."
+not_found: "&7No containers were found near you."
+no_permission: "&7Insufficient permission."
+unknown_usage: "&7Unknown usage, type &#FFF4BF/cview help &7for help."
 reloaded: "&7Plugin reloaded."
 
 # Help menu
@@ -44,9 +48,9 @@ help:
   - " &7This plugin will high-light the containers"
   - " &7so you can view it's contents without physical access."
   - ""
-  - " &b• &e/cview view &8- &7Start a new view session"
-  - " &b• &e/cview end &8- &7Terminate the current view session"
-  - " &b• &e/cview help &8- &7Display this menu"
-  - " &b• &e/cview reload &8- &7Reload plugin"
+  - " &b• &#FFF4BF/cview view &8- &7Start a new view session"
+  - " &b• &#FFF4BF/cview end &8- &7Terminate the current view session"
+  - " &b• &#FFF4BF/cview help &8- &7Display this menu"
+  - " &b• &#FFF4BF/cview reload &8- &7Reload plugin"
   - ""
-  - "&8&l&m━━━━━━━━&e&l ContainerView &8&l&m━━━━━━━━"
+  - "&8&l&m━━━━━━━━&#FFD400&l ContainerView &8&l&m━━━━━━━━"
