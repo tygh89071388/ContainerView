@@ -18,7 +18,7 @@ chat:
   # Placeholders available for 'chat.body': {x}, {y}, {z}.
   # Returns container's location x, y, z.
   body: "&8 | &7Vista de contenedor &ndisponible&7 en &f{x}, {y}, {z}"
-  clickable: " &e[Clic aquí]"
+  clickable: " &#FFF4BF[Clic aquí]"
   hover: "Clic para ver"
 
 # Clickable Message to end view session.
@@ -29,14 +29,14 @@ end:
 
 # Placeholder available for 'enable': {time}
 # Returns 'config.view_session_duration'.
-enabled: "&7Una nueva sesión de vista de contenedor &ahabilitada &7por &e{time} segundo(s)&7."
-disabled: "&7Sesión de vista de contenedor &cfinalizada&7."
-not_enabled: "&cNo hay una sesión de vista activa, usa &e/cview view&c para ver."
-not_viewable: "&7Este contenedor ya no es visible, usa &e/cview view&7 para ver de nuevo."
+enabled: "&7Una nueva sesión de vista de contenedor &ahabilitada &7por &#FFF4BF{time} segundo(s)&7."
+disabled: "&7Sesión de vista de contenedor &7finalizada&7."
+not_enabled: "&7No hay una sesión de vista activa, usa &#FFF4BF/cview view&7 para ver."
+not_viewable: "&7Este contenedor ya no es visible, usa &#FFF4BF/cview view&7 para ver de nuevo."
 # Message when there's no container nearby the player.
-not_found: "&cNo se encontraron contenedores cerca de ti."
-no_permission: "&cPermiso insuficiente."
-unknown_usage: "&cUso desconocido, escribe &e/cview help &cpara ayuda."
+not_found: "&7No se encontraron contenedores cerca de ti."
+no_permission: "&7Permiso insuficiente."
+unknown_usage: "&7Uso desconocido, escribe &#FFF4BF/cview help &7para ayuda."
 reloaded: "&7Plugin recargado."
 
 # Help menu
@@ -48,9 +48,9 @@ help:
   - " &7Este plugin resaltará los contenedores"
   - " &7para que puedas ver su contenido sin acceso físico."
   - ""
-  - " &b• &e/cview view &8- &7Iniciar una nueva sesión de vista"
-  - " &b• &e/cview end &8- &7Terminar la sesión de vista actual"
-  - " &b• &e/cview help &8- &7Mostrar este menú"
-  - " &b• &e/cview reload &8- &7Recargar plugin"
+  - " &b• &#FFF4BF/cview view &8- &7Iniciar una nueva sesión de vista"
+  - " &b• &#FFF4BF/cview end &8- &7Terminar la sesión de vista actual"
+  - " &b• &#FFF4BF/cview help &8- &7Mostrar este menú"
+  - " &b• &#FFF4BF/cview reload &8- &7Recargar plugin"
   - ""
-  - "&8&l&m━━━━━━━━&e&l ContainerView &8&l&m━━━━━━━━"
+  - "&8&l&m━━━━━━━━&#FFF4BF&l ContainerView &8&l&m━━━━━━━━"

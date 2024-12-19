@@ -17,7 +17,7 @@ chat:
   icon_double: "⏺⏺"
   # 可用佔位符 'chat.body'：{x}，{y}，{z} ( 顯示容器的 x, y, z 位置  )
   body: "&8 | &7容器 &f{x}, {y}, {z} &7現可預覽"
-  clickable: " &e[點擊]"
+  clickable: " &#FFF4BF[點擊]"
   hover: "點擊查看"
 
 # 結束預覽互動訊息
@@ -28,14 +28,14 @@ end:
 
 # 可用佔位符 'enable'：{time}
 # 顯示 'config.view_session_duration'。
-enabled: "&a開始 &7容器預覽 &e{time} 秒&7。"
-disabled: "&7容器預覽 &c結束&7。"
-not_enabled: "&7請使用 &e/cview view&7 再次預覽。"
-not_viewable: "&7請使用 &e/cview view&7 再次預覽。"
+enabled: "&a已開始 &7容器預覽 &#FFF4BF{time} 秒&7。"
+disabled: "&7容器預覽 &c已結束&7。"
+not_enabled: "&7請使用 &#FFF4BF/cview view&7 再次預覽。"
+not_viewable: "&7請使用 &#FFF4BF/cview view&7 再次預覽。"
 # 當玩家附近沒有容器時的訊息。
 not_found: "&7在附近未找到任何可預覽的容器。"
 no_permission: "&7權限不足。"
-unknown_usage: "&7指令格式錯誤，請輸入 &e/cview help &c查看用法。"
+unknown_usage: "&7指令格式錯誤，請輸入 &#FFF4BF/cview help &7查看用法。"
 reloaded: "&7插件已重新加載。"
 
 # 指令用法界面
@@ -46,9 +46,9 @@ help:
   - ""
   - " &7遠程查看容器内的物品。"
   - ""
-  - " &b• &e/cview view &8- &7預覽容器"
-  - " &b• &e/cview end &8- &7結束預覽"
-  - " &b• &e/cview help &8- &7顯示此界面"
-  - " &b• &e/cview reload &8- &7重新加載插件"
+  - " &b• &#FFF4BF/cview view &8- &7預覽容器"
+  - " &b• &#FFF4BF/cview end &8- &7結束預覽"
+  - " &b• &#FFF4BF/cview help &8- &7顯示此界面"
+  - " &b• &#FFF4BF/cview reload &8- &7重新加載插件"
   - ""
-  - "&8&l&m━━━━━━━━&e&l ContainerView &8&l&m━━━━━━━━"
+  - "&8&l&m━━━━━━━━&#FFD400&l ContainerView &8&l&m━━━━━━━━"

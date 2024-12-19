@@ -17,25 +17,25 @@ chat:
   icon_double: "⏺⏺"
   # 可用变量 'chat.body'：{x}，{y}，{z} ( 显示容器的坐标 x, y, z )
   body: "&8 | &7容器 &f{x}, {y}, {z} &7现可预览"
-  clickable: " &e[点击]"
+  clickable: " &#FFF4BF[点击]"
   hover: "点击查看"
 
 # 终止预览互动信息
 end:
-  body: "&7点击 &lx &7以提前终止预览。"
+  body: "&7点击 &lx &7以终止预览。"
   clickable: " &c[x]"
   hover: "点击终止"
 
 # 可用变量 'enable'：{time}
 # 显示 'config.view_session_duration'。
-enabled: "&7容器预览 &a开始 &7，将持续 &e{time} 秒&7。"
-disabled: "&7容器预览 &c结束&7。"
-not_enabled: "&c请使用 &e/cview view&c 再次预览。"
-not_viewable: "&c请使用 &e/cview view&c 再次预览。"
+enabled: " &a已开始 &7容器预览 &#FFF4BF{time} 秒&7。"
+disabled: "&7容器预览 &c已结束&7。"
+not_enabled: "&7请使用 &#FFF4BF/cview view&7 再次预览。"
+not_viewable: "&7请使用 &#FFF4BF/cview view&7 再次预览。"
 # 当玩家附近没有容器时的消息。
-not_found: "&c在附近未找到任何可预览的容器。"
-no_permission: "&c权限不足。"
-unknown_usage: "&c命令格式错误，请输入 &e/cview help &c查看用法。"
+not_found: "7在附近未找到任何可预览的容器。"
+no_permission: "&7权限不足。"
+unknown_usage: "&7命令格式错误，请输入 &#FFF4BF/cview help &7查看用法。"
 reloaded: "&7插件已重新加载。"
 
 # 指令用法界面
@@ -46,9 +46,9 @@ help:
   - ""
   - " &7远程查看容器内的内容。"
   - ""
-  - " &b• &e/cview view &8- &7预览容器"
-  - " &b• &e/cview end &8- &7结束预览"
-  - " &b• &e/cview help &8- &7显示帮助界面"
-  - " &b• &e/cview reload &8- &7重新加载插件"
+  - " &b• &#FFF4BF/cview view &8- &7预览容器"
+  - " &b• &#FFF4BF/cview end &8- &7结束预览"
+  - " &b• &#FFF4BF/cview help &8- &7显示帮助界面"
+  - " &b• &#FFF4BF/cview reload &8- &7重新加载插件"
   - ""
-  - "&8&l&m━━━━━━━━&e&l ContainerView &8&l&m━━━━━━━━"
+  - "&8&l&m━━━━━━━━&#FFD400&l ContainerView &8&l&m━━━━━━━━"
