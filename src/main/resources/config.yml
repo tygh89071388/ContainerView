@@ -1,9 +1,15 @@
 # Language to be used, if you do not know what you are doing, leave this as en_us.
 #
 #    To display English: en_us
+#        https://github.com/Hinogo2210/ContainerView/blob/main/src/main/resources/lang/en_us.yml
 #    Para mostrar español: es_es
+#        https://github.com/Hinogo2210/ContainerView/blob/main/src/main/resources/lang/es_es.yml
 #    顯示繁體中文(香港): zh_hk
+#        https://github.com/Hinogo2210/ContainerView/blob/main/src/main/resources/lang/zh_hk.yml
 #    显示简体中文(中国大陆): zh_cn
+#        https://github.com/Hinogo2210/ContainerView/blob/main/src/main/resources/lang/zh_cn.yml
+#
+# PM me on discord to add your language: mromango
 language: en_us
 
 # Based on the player's location and specified half-width (int range),
