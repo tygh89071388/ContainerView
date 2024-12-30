@@ -21,6 +21,10 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.Team;
+import world.bentobox.bentobox.BentoBox;
+import world.bentobox.bentobox.api.user.User;
+import world.bentobox.bentobox.database.objects.Island;
+import world.bentobox.bentobox.managers.IslandsManager;
 
 import java.util.*;
 
@@ -36,7 +40,7 @@ public class CommandView implements ICommand {
 	@Override
 	public void run(Player player) {
 
-		if (!player.hasPermission(ConfigHandler.Permission.USE)) {
+		if (!canRun(player)) {
 			MsgPlayer.send(player, MsgPlayer.MESSAGE_FIELD.NO_PERMISSION);
 			return;
 		}
@@ -277,6 +281,39 @@ public class CommandView implements ICommand {
 
 		bodyComponent.addExtra(hoverComponent);
 		player.spigot().sendMessage(bodyComponent);
+	}
+
+	/**
+	 * Check if the player has enough permission to run this command.
+	 *
+	 * @param player Player to check.
+	 * @return Has enough permission or not.
+	 */
+	private boolean canRun(Player player) {
+		if (!player.hasPermission(ConfigHandler.Permission.USE)) {
+			return false;
+		}
+
+		return hasFlagPermission(player);
+	}
+
+	/**
+	 * Check if player has flag permission from Bentobox's BSkyblock.
+	 *
+	 * @param player Player to check.
+	 * @return Has permission or not.
+	 */
+	private boolean hasFlagPermission(Player player) {
+		if (Main.bentoBoxPlug != null) {
+			User user = User.getInstance(player.getUniqueId());
+			IslandsManager manager = BentoBox.getInstance().getIslandsManager();
+			Optional<Island> island = manager.getIslandAt(user.getLocation());
+
+			if (island.isPresent()) {
+				return island.get().isAllowed(user, Main.flag);
+			}
+		}
+		return true;
 	}
 }
 

@@ -4,5 +4,7 @@ main: me.mrmango404.Main
 api-version: '1.21'
 description: Remotely view a container's contents using clickable chat message or command.
 author: oMango
+softdepend:
+  - BentoBox
 commands:
   cview:

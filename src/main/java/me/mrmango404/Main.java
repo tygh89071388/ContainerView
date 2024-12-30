@@ -4,23 +4,30 @@ import de.Linus122.SafariNet.API.Listener;
 import de.Linus122.SafariNet.API.SafariNet;
 import me.mrmango404.commands.CommandExecutor;
 import me.mrmango404.events.*;
+import me.mrmango404.hooks.BSkyblockFlag;
 import me.mrmango404.util.ClearShulker;
 import me.mrmango404.util.DebugManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
+import world.bentobox.bentobox.BentoBox;
+import world.bentobox.bentobox.api.flags.Flag;
+import world.bentobox.bentobox.managers.RanksManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
 public class Main extends JavaPlugin {
-
+	public static Flag flag;
+	public static Plugin safariPlug;
+	public static Plugin bentoBoxPlug;
 	private static Main instance;
 	// The " ꞌ " character was hard-coded here to identify if a gui belongs to this plugin.
 	public static String GUIIdentifier = "ꞌ";
@@ -46,7 +53,19 @@ public class Main extends JavaPlugin {
 		ConfigHandler.load();
 		instance.saveDefaultConfig();
 		scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
-		Plugin safariPlug = Bukkit.getPluginManager().getPlugin("SafariNet");
+		safariPlug = Bukkit.getPluginManager().getPlugin("SafariNet");
+		bentoBoxPlug = Bukkit.getPluginManager().getPlugin("BentoBox");
+
+
+		if (bentoBoxPlug != null) {
+			flag = new Flag.Builder(BSkyblockFlag.CONTAINER_VIEW_PROTECTION.getFlagName(), Material.YELLOW_SHULKER_BOX)
+					.type(Flag.Type.PROTECTION)
+					.mode(Flag.Mode.ADVANCED)
+					.defaultRank(RanksManager.MEMBER_RANK)
+					.defaultSetting(true).build();
+
+			BentoBox.getInstance().getFlagsManager().registerFlag(flag);
+		}
 
 		if (safariPlug != null) {
 			try {
