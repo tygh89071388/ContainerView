@@ -85,12 +85,11 @@ public class CommandViewGUI {
 			}
 
 			containerLocation = shulkerLeft.getLocation();
-			targetBlock = world.getBlockAt(shulkerLeft.getLocation());
+			targetBlock = world.getBlockAt(containerLocation);
 			tag = new ArrayList<>(shulkerLeft.getScoreboardTags());
 			teamColor = ChatColor.valueOf(tag.getFirst());
 			viewContainer(player, containerLocation, teamColor, targetBlock, CommandView.CONTAINER_TYPE.DOUBLE);
 		}
-
 	}
 
 	private void openContainer(Player player, Block targetBlock, String containerTitle) {

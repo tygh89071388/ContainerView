@@ -22,6 +22,7 @@ import world.bentobox.bentobox.managers.RanksManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.UUID;
 
 public class Main extends JavaPlugin {
@@ -36,7 +37,7 @@ public class Main extends JavaPlugin {
 	public static HashMap<UUID, ArrayList<Team>> globalTeamList = new HashMap<>();
 	public static HashMap<UUID, Location> globalActiveViewSessionLocations = new HashMap<>();
 	public static HashMap<UUID, ArrayList<LivingEntity>> globalSingleShulkers = new HashMap<>();
-	public static HashMap<UUID, HashMap<LivingEntity, LivingEntity>> globalDoubleShulkers = new HashMap<>();
+	public static HashMap<UUID, LinkedHashMap<LivingEntity, LivingEntity>> globalDoubleShulkers = new HashMap<>();
 
 	@Override
 	public void onEnable() {

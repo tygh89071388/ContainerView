@@ -56,7 +56,7 @@ public class CommandView implements ICommand {
 		ArrayList<Location> singleContainerList = new ArrayList<>();
 		HashMap<Location, Location> doubleContainerList = new HashMap<>();
 		ArrayList<LivingEntity> singleShulkers = new ArrayList<>();
-		HashMap<LivingEntity, LivingEntity> doubleShulkers = new HashMap<>();
+		LinkedHashMap<LivingEntity, LivingEntity> doubleShulkers = new LinkedHashMap<>();
 
 		/*
 		Add each container's location to according lists.
@@ -138,8 +138,8 @@ public class CommandView implements ICommand {
 		// Spawning for Double Chest
 		int j = 0;
 		for (Map.Entry<Location, Location> set : doubleContainerList.entrySet()) {
-			Location locationLeft = set.getKey();
-			Location locationRight = set.getValue();
+			Location locationLeft = set.getValue();
+			Location locationRight = set.getKey();
 
 			if (resPlug != null) {
 				locationLeft = locationLeft.add(0, HOOK_RESIDENCE_HEIGHT, 0);
@@ -175,6 +175,7 @@ public class CommandView implements ICommand {
 				new HideShulker(playerUUID, shulkerLeft);
 				new HideShulker(playerUUID, shulkerRight);
 				doubleShulkers.put(shulkerLeft, shulkerRight);
+				player.sendMessage("Shulker added to: " + doubleShulkers.size());
 			}
 		}
 		sendClickableEnd(player);
