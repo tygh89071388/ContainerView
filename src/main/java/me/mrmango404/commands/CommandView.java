@@ -175,7 +175,6 @@ public class CommandView implements ICommand {
 				new HideShulker(playerUUID, shulkerLeft);
 				new HideShulker(playerUUID, shulkerRight);
 				doubleShulkers.put(shulkerLeft, shulkerRight);
-				player.sendMessage("Shulker added to: " + doubleShulkers.size());
 			}
 		}
 		sendClickableEnd(player);
