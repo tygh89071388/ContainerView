@@ -53,8 +53,8 @@ public class CommandView implements ICommand {
 		ArrayList<Team> teamsList = new ArrayList<>();
 		Location playerLocation = player.getLocation();
 		ArrayList<Block> blockList = Cuboid.getBlocks(player, ConfigHandler.VIEW_RANGE);
-		ArrayList<Location> singleContainerList = new ArrayList<>();
-		HashMap<Location, Location> doubleContainerList = new HashMap<>();
+		ArrayList<Location> singleLocation = new ArrayList<>();
+		HashMap<Location, Location> doubleLocation = new HashMap<>();
 		ArrayList<LivingEntity> singleShulkers = new ArrayList<>();
 		LinkedHashMap<LivingEntity, LivingEntity> doubleShulkers = new LinkedHashMap<>();
 
@@ -63,22 +63,25 @@ public class CommandView implements ICommand {
 		 */
 		for (Block block : blockList) {
 			for (Material material : getContainers()) {
-				if (getBlockType(block).equals(material)) {
-					singleContainerList.add(block.getLocation());
+				if (!getBlockType(block).equals(material)) {
+					continue;
 				}
-			}
-			if (getBlockType(block).equals(Material.CHEST)) {
-				Chest chest = (Chest) block.getState();
-				InventoryHolder holder = chest.getInventory().getHolder();
-				if (holder instanceof DoubleChest doubleChest) {
-					Chest leftSide = (Chest) doubleChest.getLeftSide();
-					Chest rightSide = (Chest) doubleChest.getRightSide();
-					doubleContainerList.put(leftSide.getLocation(), rightSide.getLocation());
+
+				singleLocation.add(block.getLocation());
+
+				if (getBlockType(block).equals(Material.CHEST)) {
+					Chest chest = (Chest) block.getState();
+					InventoryHolder holder = chest.getInventory().getHolder();
+					if (holder instanceof DoubleChest doubleChest) {
+						Chest leftSide = (Chest) doubleChest.getLeftSide();
+						Chest rightSide = (Chest) doubleChest.getRightSide();
+						doubleLocation.put(leftSide.getLocation(), rightSide.getLocation());
+					}
 				}
 			}
 		}
-
-		if (singleContainerList.isEmpty() && doubleContainerList.isEmpty()) {
+		
+		if (singleLocation.isEmpty() && doubleLocation.isEmpty()) {
 			MsgPlayer.send(player, MsgPlayer.MESSAGE_FIELD.NOT_FOUND);
 			return;
 		}
@@ -96,8 +99,8 @@ public class CommandView implements ICommand {
 		/*
 		Remove the double chests in the single-type containers list.
 		 */
-		for (Map.Entry<Location, Location> set : doubleContainerList.entrySet()) {
-			singleContainerList.removeIf(aLocationOfSingleChest -> aLocationOfSingleChest.equals(set.getKey()) || aLocationOfSingleChest.equals(set.getValue()));
+		for (Map.Entry<Location, Location> set : doubleLocation.entrySet()) {
+			singleLocation.removeIf(aLocationOfSingleChest -> aLocationOfSingleChest.equals(set.getKey()) || aLocationOfSingleChest.equals(set.getValue()));
 		}
 
 		/*
@@ -105,7 +108,7 @@ public class CommandView implements ICommand {
 		 */
 		// Spawning for single containers
 		int i = 0;
-		for (Location location : singleContainerList) {
+		for (Location location : singleLocation) {
 			if (resPlug != null) {
 				location = location.add(0, HOOK_RESIDENCE_HEIGHT, 0);
 			}
@@ -137,7 +140,7 @@ public class CommandView implements ICommand {
 
 		// Spawning for Double Chest
 		int j = 0;
-		for (Map.Entry<Location, Location> set : doubleContainerList.entrySet()) {
+		for (Map.Entry<Location, Location> set : doubleLocation.entrySet()) {
 			Location locationLeft = set.getValue();
 			Location locationRight = set.getKey();
 
