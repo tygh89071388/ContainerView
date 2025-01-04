@@ -1,4 +1,4 @@
-# Other Plugin Support
+# Protection Plugin Support
 
 The plugin provides support for protection plugin, so you can decide who can view the containers in your area.
 <br>If your desired protection plugin is not listed here, feel free to create an new issue.
