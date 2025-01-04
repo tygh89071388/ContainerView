@@ -1,6 +1,6 @@
 # Other Plugin Support
 
-The plugin provides support for protection plugin, as you can decide who can view the containers in you area.
+The plugin provides support for protection plugin, so you can decide who can view the containers in your area.
 <br>If your desired protection plugin is not listed here, feel free to create an new issue.
 
 ### 1. Bentobox (BSkyblock)
