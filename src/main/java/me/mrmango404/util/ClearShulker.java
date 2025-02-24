@@ -3,6 +3,7 @@ package me.mrmango404.util;
 import me.mrmango404.Main;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.Team;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class ClearShulker {
 			return;
 		}
 
-		new CancelScheduler(player);
+		cancelScheduler(player);
 
 		for (Team team : Main.globalTeamList.get(playerUUID)) {
 			try {
@@ -76,5 +77,21 @@ public class ClearShulker {
 				entitySet.getKey().remove();
 			}
 		}
+	}
+
+	/**
+	 * Clear all the bukkit schedulers.
+	 */
+	private void cancelScheduler(Player player) {
+
+		UUID playerUUID = player.getUniqueId();
+		HashMap<UUID, BukkitTask> taskList = Main.globalSchedulers;
+
+		if (!taskList.containsKey(playerUUID)) {
+			return;
+		}
+
+		taskList.get(playerUUID).cancel();
+		taskList.remove(playerUUID);
 	}
 }

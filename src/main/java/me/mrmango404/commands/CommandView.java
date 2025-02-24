@@ -2,15 +2,15 @@ package me.mrmango404.commands;
 
 import me.mrmango404.ConfigHandler;
 import me.mrmango404.Main;
-import me.mrmango404.util.*;
+import me.mrmango404.util.ClearShulker;
+import me.mrmango404.util.HideShulker;
+import me.mrmango404.util.MsgPlayer;
+import me.mrmango404.util.Translate;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.chat.hover.content.Text;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.DoubleChest;
@@ -52,7 +52,7 @@ public class CommandView implements ICommand {
 		UUID playerUUID = player.getUniqueId();
 		ArrayList<Team> teamsList = new ArrayList<>();
 		Location playerLocation = player.getLocation();
-		ArrayList<Block> blockList = Cuboid.getBlocks(player, ConfigHandler.VIEW_RANGE);
+		ArrayList<Block> blockList = getBlocks(player, ConfigHandler.VIEW_RANGE);
 		ArrayList<Location> singleLocation = new ArrayList<>();
 		HashMap<Location, Location> doubleLocation = new HashMap<>();
 		ArrayList<LivingEntity> singleShulkers = new ArrayList<>();
@@ -80,7 +80,7 @@ public class CommandView implements ICommand {
 				}
 			}
 		}
-		
+
 		if (singleLocation.isEmpty() && doubleLocation.isEmpty()) {
 			MsgPlayer.send(player, MsgPlayer.MESSAGE_FIELD.NOT_FOUND);
 			return;
@@ -213,6 +213,7 @@ public class CommandView implements ICommand {
 		entity.setGravity(false);
 		entity.setGlowing(true);
 		entity.setInvulnerable(true);
+		entity.setPersistent(false);
 		return entity;
 	}
 
@@ -317,6 +318,42 @@ public class CommandView implements ICommand {
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * Based on the player's location and specified half-width (int range),
+	 * this function returns a list of blocks within the cuboid-shaped area centered on the player.
+	 * The cuboid extends from the player's position in all directions (x, y, z) by the specified range.
+	 *
+	 * @param player
+	 * @param range
+	 * @return
+	 */
+	public static ArrayList<Block> getBlocks(Player player, int range) {
+
+		World world = player.getWorld();
+		ArrayList<Block> blockList = new ArrayList<>();
+
+		int playerLocationTopX = player.getLocation().getBlockX() + range;
+		int playerLocationTopY = player.getLocation().getBlockY() + range;
+		int playerLocationTopZ = player.getLocation().getBlockZ() + range;
+
+		int playerLocationBottomX = player.getLocation().getBlockX() - range;
+		int playerLocationBottomY = player.getLocation().getBlockY() - range;
+		int playerLocationBottomZ = player.getLocation().getBlockZ() - range;
+
+		for (int x = playerLocationBottomX; x <= playerLocationTopX; x++) {
+			for (int y = playerLocationBottomY; y <= playerLocationTopY; y++) {
+				for (int z = playerLocationBottomZ; z <= playerLocationTopZ; z++) {
+
+					Location location = new Location(world, x, y, z);
+					Block block = world.getBlockAt(location);
+					blockList.add(block);
+				}
+			}
+		}
+
+		return blockList;
 	}
 }
 
