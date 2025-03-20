@@ -23,23 +23,21 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor, TabC
 			return true;
 		}
 
+		ICommand cmd = null;
+
 		if (strings.length == 1) {
 			switch (strings[0]) {
 				case "end" -> {
-					new CommandEnd().run(player);
-					return true;
+					cmd = new CommandEnd();
 				}
 				case "view" -> {
-					new CommandView().run(player);
-					return true;
+					cmd = new CommandView();
 				}
 				case "help" -> {
-					new CommandHelp().run(player);
-					return true;
+					cmd = new CommandHelp();
 				}
 				case "reload" -> {
-					new CommandReload().run(player);
-					return true;
+					cmd = new CommandReload();
 				}
 			}
 		}
@@ -49,6 +47,11 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor, TabC
 				new CommandViewGUI().run(player, (strings[1].equalsIgnoreCase("single")) ? CommandView.CONTAINER_TYPE.SINGLE : CommandView.CONTAINER_TYPE.DOUBLE, Integer.parseInt(strings[2]));
 				return true;
 			}
+		}
+
+		if (cmd != null) {
+			cmd.run(player);
+			return true;
 		}
 
 		MsgPlayer.send(player, MsgPlayer.MESSAGE_FIELD.UNKNOWN_USAGE);
