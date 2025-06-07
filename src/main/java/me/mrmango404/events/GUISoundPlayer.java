@@ -1,6 +1,6 @@
 package me.mrmango404.events;
 
-import me.mrmango404.Main;
+import me.mrmango404.GUI;
 import me.mrmango404.util.SoundPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,14 +12,14 @@ public class GUISoundPlayer implements Listener {
 
 	@EventHandler
 	public void onGUIOpen(InventoryOpenEvent event) {
-		if (event.getView().getTitle().contains(Main.GUIIdentifier)) {
+		if (event.getInventory().getHolder() instanceof GUI) {
 			SoundPlayer.playSound((Player) event.getPlayer(), SoundPlayer.ACTION.OPEN);
 		}
 	}
 
 	@EventHandler
 	public void onGUIOpen(InventoryCloseEvent event) {
-		if (event.getView().getTitle().contains(Main.GUIIdentifier)) {
+		if (event.getInventory().getHolder() instanceof GUI) {
 			SoundPlayer.playSound((Player) event.getPlayer(), SoundPlayer.ACTION.CLOSE);
 		}
 	}

@@ -1,12 +1,16 @@
 package me.mrmango404.commands;
 
 import me.mrmango404.ConfigHandler;
+import me.mrmango404.GUI;
 import me.mrmango404.Main;
 import me.mrmango404.util.CheckActive;
 import me.mrmango404.util.MsgPlayer;
 import me.mrmango404.util.SoundPlayer;
 import me.mrmango404.util.Translate;
-import org.bukkit.*;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.*;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -16,6 +20,8 @@ import org.bukkit.inventory.Inventory;
 import java.util.*;
 
 public class CommandViewGUI {
+
+	Main plugin = Main.getMain();
 
 	public void run(Player player, CommandView.CONTAINER_TYPE type, int container) {
 
@@ -36,7 +42,6 @@ public class CommandViewGUI {
 		UUID playerUUID = player.getUniqueId();
 		ArrayList<LivingEntity> globalSingleShulkers = Main.globalSingleShulkers.get(playerUUID);
 		HashMap<LivingEntity, LivingEntity> globalDoubleShulkers = Main.globalDoubleShulkers.get(playerUUID);
-
 
 		if (type == CommandView.CONTAINER_TYPE.SINGLE) {
 			if (globalSingleShulkers == null) {
@@ -94,9 +99,10 @@ public class CommandViewGUI {
 
 	private void openContainer(Player player, Block targetBlock, String containerTitle) {
 
+
 		if (targetBlock.getType().equals(Material.CHEST) || targetBlock.getType().equals(Material.TRAPPED_CHEST)) {
 			Chest chest = (Chest) targetBlock.getState();
-			Inventory inv = Bukkit.createInventory(player, chest.getInventory().getSize(), containerTitle);
+			Inventory inv = new GUI(plugin, InventoryType.CHEST, containerTitle, chest.getInventory().getSize()).getInventory();
 			inv.setContents(chest.getInventory().getContents());
 			player.openInventory(inv);
 			SoundPlayer.playSound(player, SoundPlayer.ACTION.OPEN);
@@ -104,7 +110,7 @@ public class CommandViewGUI {
 		}
 
 		if (targetBlock.getType().equals(Material.DROPPER)) {
-			Inventory inv = Bukkit.createInventory(player, InventoryType.DROPPER, containerTitle);
+			Inventory inv = new GUI(plugin, InventoryType.DROPPER, containerTitle).getInventory();
 			Dropper dropper = (Dropper) targetBlock.getState();
 			inv.setContents(dropper.getInventory().getContents());
 			player.openInventory(inv);
@@ -113,7 +119,7 @@ public class CommandViewGUI {
 		}
 
 		if (targetBlock.getType().equals(Material.DISPENSER)) {
-			Inventory inv = Bukkit.createInventory(player, InventoryType.DROPPER, containerTitle);
+			Inventory inv = new GUI(plugin, InventoryType.DISPENSER, containerTitle).getInventory();
 			Dispenser dispenser = (Dispenser) targetBlock.getState();
 			inv.setContents(dispenser.getInventory().getContents());
 			player.openInventory(inv);
@@ -122,7 +128,7 @@ public class CommandViewGUI {
 		}
 
 		if (targetBlock.getType().equals(Material.BARREL)) {
-			Inventory inv = Bukkit.createInventory(player, InventoryType.BARREL, containerTitle);
+			Inventory inv = new GUI(plugin, InventoryType.BARREL, containerTitle).getInventory();
 			Barrel barrel = (Barrel) targetBlock.getState();
 			inv.setContents(barrel.getInventory().getContents());
 			player.openInventory(inv);
@@ -131,7 +137,7 @@ public class CommandViewGUI {
 		}
 
 		if (targetBlock.getState() instanceof ShulkerBox shulkerBox) {
-			Inventory inv = Bukkit.createInventory(player, InventoryType.SHULKER_BOX, containerTitle);
+			Inventory inv = new GUI(plugin, InventoryType.SHULKER_BOX, containerTitle).getInventory();
 			inv.setContents(shulkerBox.getInventory().getContents());
 			player.openInventory(inv);
 			SoundPlayer.playSound(player, SoundPlayer.ACTION.OPEN);
@@ -150,7 +156,7 @@ public class CommandViewGUI {
 		} else {
 			icon = ConfigHandler.Msg.CHAT_ICON_DOUBLE;
 		}
-		String containerTitle = Translate.color(teamColor + Main.GUIIdentifier + ConfigHandler.Msg.GUI_TITLE
+		String containerTitle = Translate.color(teamColor + ConfigHandler.Msg.GUI_TITLE
 				.replace("{icon}", icon)
 				.replace("{x}", String.valueOf(x))
 				.replace("{y}", String.valueOf(y))

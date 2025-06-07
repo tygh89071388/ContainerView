@@ -31,7 +31,6 @@ public class Main extends JavaPlugin {
 	public static Plugin bentoBoxPlug;
 	private static Main instance;
 	// The " ꞌ " character was hard-coded here to identify if a gui belongs to this plugin.
-	public static String GUIIdentifier = "ꞌ";
 	public static Scoreboard scoreboard;
 	public static HashMap<UUID, BukkitTask> globalSchedulers = new HashMap<>();
 	public static HashMap<UUID, ArrayList<Team>> globalTeamList = new HashMap<>();

@@ -1,6 +1,7 @@
 package me.mrmango404.commands;
 
 import me.mrmango404.ConfigHandler;
+import me.mrmango404.GUI;
 import me.mrmango404.Main;
 import me.mrmango404.util.ClearShulker;
 import me.mrmango404.util.HideShulker;
@@ -194,7 +195,7 @@ public class CommandView implements ICommand {
 			new ClearShulker(player);
 
 			// auto close part
-			if (ConfigHandler.GUI_AUTO_CLOSE && player.getOpenInventory().getTitle().contains(Main.GUIIdentifier)) {
+			if (ConfigHandler.GUI_AUTO_CLOSE && player.getOpenInventory().getTopInventory().getHolder() instanceof GUI) {
 				player.closeInventory();
 			}
 
