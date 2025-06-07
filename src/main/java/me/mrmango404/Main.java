@@ -30,7 +30,6 @@ public class Main extends JavaPlugin {
 	public static Plugin safariPlug;
 	public static Plugin bentoBoxPlug;
 	private static Main instance;
-	// The " ꞌ " character was hard-coded here to identify if a gui belongs to this plugin.
 	public static Scoreboard scoreboard;
 	public static HashMap<UUID, BukkitTask> globalSchedulers = new HashMap<>();
 	public static HashMap<UUID, ArrayList<Team>> globalTeamList = new HashMap<>();
@@ -55,8 +54,7 @@ public class Main extends JavaPlugin {
 		scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 		safariPlug = Bukkit.getPluginManager().getPlugin("SafariNet");
 		bentoBoxPlug = Bukkit.getPluginManager().getPlugin("BentoBox");
-
-
+		
 		if (bentoBoxPlug != null) {
 			flag = new Flag.Builder(BSkyblockFlag.CONTAINER_VIEW_PROTECTION.getFlagName(), Material.YELLOW_SHULKER_BOX)
 					.type(Flag.Type.PROTECTION)
