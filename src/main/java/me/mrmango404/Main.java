@@ -7,6 +7,7 @@ import me.mrmango404.events.*;
 import me.mrmango404.hooks.BSkyblockFlag;
 import me.mrmango404.util.ClearShulker;
 import me.mrmango404.util.DebugManager;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -54,7 +55,7 @@ public class Main extends JavaPlugin {
 		scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 		safariPlug = Bukkit.getPluginManager().getPlugin("SafariNet");
 		bentoBoxPlug = Bukkit.getPluginManager().getPlugin("BentoBox");
-		
+
 		if (bentoBoxPlug != null) {
 			flag = new Flag.Builder(BSkyblockFlag.CONTAINER_VIEW_PROTECTION.getFlagName(), Material.YELLOW_SHULKER_BOX)
 					.type(Flag.Type.PROTECTION)
@@ -77,6 +78,8 @@ public class Main extends JavaPlugin {
 		} else {
 			DebugManager.log("SafariNet hook could not be found.");
 		}
+
+		new Metrics(this, 26011);
 	}
 
 	@Override
