@@ -120,10 +120,6 @@ public class ConfigHandler {
 
 		// Load the language file
 		YamlConfiguration lang = YamlConfiguration.loadConfiguration(langFile);
-		YamlConfiguration defaultLang = YamlConfiguration.loadConfiguration(
-				new InputStreamReader(mainClass.getResource("lang/" + langFileName))
-		);
-		lang.addDefaults(defaultLang);
 
 		// Load all message settings
 		loadMessageSettings(lang);
