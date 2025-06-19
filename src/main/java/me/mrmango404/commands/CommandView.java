@@ -22,6 +22,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.Team;
+import org.bukkit.util.Vector;
 import world.bentobox.bentobox.BentoBox;
 import world.bentobox.bentobox.api.user.User;
 import world.bentobox.bentobox.database.objects.Island;
@@ -53,7 +54,8 @@ public class CommandView implements ICommand {
 		UUID playerUUID = player.getUniqueId();
 		ArrayList<Team> teamsList = new ArrayList<>();
 		Location playerLocation = player.getLocation();
-		ArrayList<Block> blockList = getBlocks(player, ConfigHandler.VIEW_RANGE);
+		// ★★★ 修改：使用 getBlocksInFront，只抓玩家前方 180 度範圍內的方塊 ★★★
+		ArrayList<Block> blockList = getBlocksInFront(player, ConfigHandler.VIEW_RANGE);
 		ArrayList<Location> singleLocation = new ArrayList<>();
 		HashMap<Location, Location> doubleLocation = new HashMap<>();
 		ArrayList<LivingEntity> singleShulkers = new ArrayList<>();
@@ -65,6 +67,12 @@ public class CommandView implements ICommand {
 		for (Block block : blockList) {
 			for (Material material : getContainers()) {
 				if (!getBlockType(block).equals(material)) {
+					continue;
+				}
+
+				// ★★★ 新增：若此容器下方是金磚，則略過 ★★★
+				Block belowBlock = block.getLocation().clone().subtract(0, 1, 0).getBlock();
+				if (belowBlock.getType() == Material.GOLD_BLOCK) {
 					continue;
 				}
 
@@ -321,6 +329,44 @@ public class CommandView implements ICommand {
 		return true;
 	}
 
+	// ★★★ 新增：只抓取玩家前方 180 度範圍內的所有非空氣方塊 ★★★
+	private ArrayList<Block> getBlocksInFront(Player player, int range) {
+		ArrayList<Block> blocks = new ArrayList<>();
+		Location eyeLoc = player.getEyeLocation();
+		// 玩家朝向向量
+		Vector dir = eyeLoc.getDirection().normalize();
+
+		// 在三維空間裡，x, y, z 各從 -range 到 range
+		for (int x = -range; x <= range; x++) {
+			for (int y = -range; y <= range; y++) {
+				for (int z = -range; z <= range; z++) {
+					// 計算每個偏移量對應的實際座標
+					Location checkLoc = eyeLoc.clone().add(x, y, z);
+
+					// 距離判斷，若超出 range，不處理
+					double distSq = eyeLoc.distanceSquared(checkLoc);
+					if (distSq > range * range) {
+						continue;
+					}
+
+					// 計算 [玩家眼睛 -> 目標方塊] 的向量
+					Vector toBlock = checkLoc.toVector().subtract(eyeLoc.toVector()).normalize();
+					// 與玩家面向方向 (dir) 的夾角 (弧度)
+					double angle = dir.angle(toBlock);
+					// 把弧度轉成角度，若 <= 90 則代表此方塊位於玩家前方 180 度之內
+					if (Math.toDegrees(angle) <= 90) {
+						Block block = checkLoc.getBlock();
+						// 過濾空氣方塊
+						if (block.getType() != Material.AIR) {
+							blocks.add(block);
+						}
+					}
+				}
+			}
+		}
+		return blocks;
+	}
+
 	/**
 	 * Based on the player's location and specified half-width (int range),
 	 * this function returns a list of blocks within the cuboid-shaped area centered on the player.
@@ -357,6 +403,3 @@ public class CommandView implements ICommand {
 		return blockList;
 	}
 }
-
-
-
